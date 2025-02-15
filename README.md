@@ -34,7 +34,7 @@ npm install
 
 ### **3️⃣ Configurar Variables de Entorno**
 
-Modifica el archivo **`Env.ts`** en la constants y agrega la URL de la API:
+Modifica el archivo **`Env.ts`** en la carpeta constants y agrega la URL de la API:
 
 ```env
 API_URL="htt://localhost:9091/api";
