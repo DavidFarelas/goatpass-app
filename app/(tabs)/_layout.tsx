@@ -1,43 +1,55 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from "expo-router";
+import { TouchableOpacity, Alert, Platform } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { useAuthStore } from "@/store/authStore";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = () => {
+    if (Platform.OS === "web") {
+      const confirm = window.confirm("¿Estás seguro de que quieres salir?");
+      if (confirm) logout();
+    } else {
+      Alert.alert("Cerrar Sesión", "¿Estás seguro de que quieres salir?", [
+        { text: "Cancelar", style: "cancel" },
+        { text: "Salir", onPress: logout },
+      ]);
+    }
+  };
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarActiveTintColor: "#FFCD00", // ✅ Color del icono activo
+      }}
+    >
+      {/* 🟡 Pestaña de Cupones */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Cupones",
+          headerShown: true, // ✅ Muestra el header
+          headerRight: () => (
+            <TouchableOpacity onPress={handleLogout} className="mr-4">
+              <FontAwesome name="sign-out" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="tags" size={size} color={color} />
+          ),
         }}
       />
+
+      {/* 🟠 Pestaña de Favoritos */}
       <Tabs.Screen
-        name="explore"
+        name="favorites"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Favoritos",
+          headerShown: true, // ✅ Muestra el header en favoritos también
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="heart" size={size} color={color} />
+          ),
         }}
       />
     </Tabs>

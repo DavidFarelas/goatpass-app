@@ -1,50 +1,94 @@
-# Welcome to your Expo app 👋
+# 📱 Aplicación de Cupones con React Native y Expo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Esta es una aplicación móvil de **cupones de descuento** como parte de la prueba técnica para el puesto de fullstack en `goatpass.ai` desarrollada con **React Native y Expo**, que permite a los usuarios **ver cupones, agregarlos a favoritos y gestionar su autenticación**.
 
-## Get started
+## 🛠 Tecnologías Utilizadas
 
-1. Install dependencies
+- **React Native + Expo** → Para un desarrollo rápido y fácil de mantener.
+- **Expo Router** → Para una navegación sencilla basada en archivos.
+- **Zustand** → Para el manejo eficiente del estado global.
+- **Tailwind CSS (NativeWind)** → Para estilos rápidos y flexibles.
+- **Axios** → Para las peticiones HTTP al backend.
+- **TypeScript** → Para mayor seguridad y escalabilidad en el código.
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 🚀 Instalación y Configuración
 
-   ```bash
-    npx expo start
-   ```
+Sigue estos pasos para instalar y ejecutar la aplicación en tu dispositivo o emulador.
 
-In the output, you'll find options to open the app in a
+### **1️⃣ Clonar el Repositorio**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```sh
+git clone https://github.com/DavidFarelas/goatpass-app.git
+cd goatpass-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### **2️⃣ Instalar Dependencias**
 
-## Learn more
+Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
-To learn more about developing your project with Expo, look at the following resources:
+```sh
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### **3️⃣ Configurar Variables de Entorno**
 
-## Join the community
+Modifica el archivo **`Env.ts`** en la constants y agrega la URL de la API:
 
-Join our community of developers creating universal apps.
+```env
+API_URL="htt://localhost:9091/api";
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### **4️⃣ Ejecutar la Aplicación**
+
+Para iniciar la app en un emulador o dispositivo físico, usa:
+
+```sh
+npx expo start
+```
+
+Para probar en el navegador:
+
+```sh
+npx expo start --web
+```
+
+---
+
+## 📌 Funcionalidades Implementadas
+
+✅ **Autenticación** → Ingreso con correo electrónico.  
+✅ **Lista de Cupones** → Se obtienen desde el backend.  
+✅ ✅ **Favoritos** → Los usuarios pueden marcar y desmarcar cupones como favoritos.  
+✅ **Persistencia de Estado** → Se guarda la sesión del usuario y sus favoritos.  
+✅ **Diseño Responsivo** → Funciona en dispositivos móviles y en web.
+
+---
+
+## 📍 Justificación de Decisiones Técnicas
+
+### **📌 Expo & React Native**
+
+- **Expo** fue elegido para facilitar la configuración, pruebas y compatibilidad con múltiples dispositivos sin necesidad de configuración manual de `Xcode` o `Android Studio`.
+- **React Native** permite un desarrollo rápido y una experiencia fluida en dispositivos móviles.
+
+### **📌 Expo Router (Navegación)**
+
+- Se utilizó **Expo Router** en lugar de `react-navigation` porque ofrece **una navegación basada en archivos** más clara y escalable.
+- **Ventaja:** Permite organizar pantallas dentro de carpetas como `app/(tabs)/index.tsx`, haciendo que el código sea más mantenible.
+
+### **📌 Zustand (Estado Global)**
+
+- Se eligió **Zustand** en lugar de **Redux** porque es **más ligero, simple y rápido** para gestionar el estado de autenticación y favoritos.
+- No requiere **boilerplate innecesario** como reducers y actions.
+
+### **📌 Tailwind CSS (NativeWind)**
+
+- Se utilizó **NativeWind** porque permite escribir estilos **de manera declarativa** con clases CSS dentro de los componentes de React Native.
+- Facilita la personalización rápida sin necesidad de crear múltiples estilos en `StyleSheet.create()`.
+
+### **📌 Conexión con Backend**
+
+- Se usa **Axios** para manejar peticiones HTTP, ya que ofrece mejor manejo de errores y mayor flexibilidad que `fetch()`.
+- Se implementa **manejo de favoritos con un backend**, asegurando que los datos sean persistentes entre sesiones.
