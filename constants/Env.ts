@@ -1,3 +1,3 @@
 export const Env = {
-  API_URL: "http://10.0.2.2:9091/api",
+  API_URL: "https://goatpass-server-2.onrender.com/api",
 };
