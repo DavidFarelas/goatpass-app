@@ -21,15 +21,14 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#FFCD00", // ✅ Color del icono activo
+        tabBarActiveTintColor: "#FFCD00",
       }}
     >
-      {/* 🟡 Pestaña de Cupones */}
       <Tabs.Screen
         name="index"
         options={{
           title: "Cupones",
-          headerShown: true, // ✅ Muestra el header
+          headerShown: true,
           headerRight: () => (
             <TouchableOpacity onPress={handleLogout} className="mr-4">
               <FontAwesome name="sign-out" size={24} color="black" />
@@ -41,12 +40,11 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 🟠 Pestaña de Favoritos */}
       <Tabs.Screen
         name="favorites"
         options={{
           title: "Favoritos",
-          headerShown: true, // ✅ Muestra el header en favoritos también
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="heart" size={size} color={color} />
           ),
